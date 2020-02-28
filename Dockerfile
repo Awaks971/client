@@ -35,7 +35,7 @@ RUN yarn build
 FROM nginx:stable
 
 # Copy React build into `/var/www/`
-COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/
+COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
 
 # Remove old default nginx conf
 RUN rm /etc/nginx/conf.d/default.conf
