@@ -25,26 +25,5 @@ COPY . /usr/src/app/awaks-dashboard
 RUN yarn build
 
 
-
-
-# # -------------------
-# # --- Nginx setup ---
-# # -------------------
-
-# # Use stable version of Nginx
-# FROM nginx:stable
-
-# # Copy React build into `/var/www/awaks`
-# COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
-
-# # Remove old default nginx conf
-# RUN rm /etc/nginx/conf.d/default.conf
-
-# # Copy Nginx configuration into the real server
-# COPY ./nginx.conf /etc/nginx/conf.d
-
-# VOLUME ["certs:/etc/letsencrypt", "certs-data:/data/letsencrypt"]
-
-# EXPOSE 80 443
-
-# CMD ["nginx","-g","daemon off;"]
+# Copy React build into `/usr/share/nginx/html/`
+COPY --from=build /usr/src/app/awaks-dashboard/build/ /usr/share/nginx/html/
