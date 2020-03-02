@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Get certs
-certbot certonly -n -d example.com,www.example.com \
-  --standalone --preferred-challenges http --email example@gmail.com --agree-tos --expand
+certbot certonly -n -d 360.awaks.fr \
+  --standalone --preferred-challenges http --email nicolas.leroy@hetic.net --agree-tos --expand
 
 # Kick off cron
 /usr/sbin/crond -f -d 8 &

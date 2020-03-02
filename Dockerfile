@@ -57,6 +57,4 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 # Copy React build into `/var/www/`
 COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
 
-
-
-ENTRYPOINT [ "./nginx/entrypoint.sh" ]
+ENTRYPOINT [ "../entrypoint.sh" ]
