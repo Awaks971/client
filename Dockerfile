@@ -41,8 +41,8 @@ COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy Nginx configuration into the real server
-COPY ./nginx.conf /etc/nginx/conf.d
+COPY ./nginx/nginx.conf /etc/nginx/conf.d
 
-EXPOSE 80
+EXPOSE 80 443
 
 CMD ["nginx","-g","daemon off;"]
