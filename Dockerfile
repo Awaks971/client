@@ -31,18 +31,32 @@ RUN yarn build
  # --- Nginx setup ---
  # -------------------
 
-# Use stable version of Nginx
-FROM nginx:stable
 
-# Copy React build into `/var/www/`
-COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
+FROM nginx:1.16-alpine
+
+RUN apk add --no-cache certbot
 
 # Remove old default nginx conf
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy Nginx configuration into the real server
-COPY ./nginx/nginx.conf /etc/nginx/conf.d
 
-EXPOSE 80 443
+# Copy renew cron script
+COPY nginx/renew /etc/periodic/daily/renew
+RUN chmod +x /etc/periodic/daily/renew
 
-CMD ["nginx","-g","daemon off;"]
+RUN mkdir /var/lib/certbot
+
+# Copy entrypoint
+COPY nginx/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# nginx config
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+
+# Copy React build into `/var/www/`
+COPY --from=build /usr/src/app/awaks-dashboard/build/ /var/www/awaks/
+
+
+
+ENTRYPOINT [ "./nginx/entrypoint.sh" ]
