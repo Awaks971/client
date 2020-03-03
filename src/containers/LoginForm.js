@@ -28,7 +28,7 @@ function LoginForm({ history }) {
     setLoading(true);
     try {
       const { data: user } = await axios.post(
-        `${REACT_APP_BACKEND_END_POINT}/login`,
+        `${REACT_APP_BACKEND_END_POINT}/api/login`,
         {
           credentials
         }

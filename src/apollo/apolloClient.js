@@ -36,7 +36,9 @@ function createApolloClient() {
     debug: process.env.NODE_ENV === "development"
   });
 
-  const authLink = setContext((_, { headers }) => {
+  const authLink = setContext((request, { headers }) => {
+    console.log(request);
+
     /**
      * Querying the cache to get the user token
      */
