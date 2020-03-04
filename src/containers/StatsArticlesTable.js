@@ -27,6 +27,7 @@ function StatsArticlesTable({ current_criterion, range, get_recap }) {
 
   const { data, loading } = useQuery(ARTICLES_STATS, {
     notifyOnNetworkStatusChange: true,
+    fetchPolicy: "network-only",
     variables: {
       order_by: current_criterion.name,
       range: {
@@ -93,7 +94,7 @@ function StatsArticlesTable({ current_criterion, range, get_recap }) {
             {article_stats
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(row => (
-                <TableRow key={row.id}>
+                <TableRow key={row.article_id}>
                   <MUITableCell>{row.label}</MUITableCell>
                   <MUITableCell align="right">
                     {euro.format(row.amount_ttc)}

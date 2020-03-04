@@ -27,12 +27,9 @@ function LoginForm({ history }) {
   async function login({ credentials }) {
     setLoading(true);
     try {
-      const { data: user } = await axios.post(
-        `${REACT_APP_BACKEND_END_POINT}/api/login`,
-        {
-          credentials
-        }
-      );
+      const { data: user } = await axios.post(REACT_APP_BACKEND_END_POINT, {
+        credentials
+      });
 
       const cleanUser = {
         __typename: "User",
@@ -71,13 +68,10 @@ function LoginForm({ history }) {
         setSuccess(true);
       }
 
-      console.log(user);
-
       user.firstname || user.lastname || user.role === "admin"
         ? history.push("/dashboard")
         : history.push("/finish-register");
     } catch (err) {
-      console.log(err);
       setLoading(false);
       setSuccess(true);
       set_error_message(err.response && err.response.data.message);

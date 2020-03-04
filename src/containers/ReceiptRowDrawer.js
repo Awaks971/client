@@ -173,7 +173,6 @@ function ReceiptHead() {
 }
 
 function ReceiptBody({ receipt = default_receipt }) {
-  console.log(receipt);
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
       <Grid item xs={12}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ButtonMenu from "./ButtonMenu";
 import KeyboardArrowIcon from "@material-ui/icons/KeyboardArrowDown";
@@ -19,13 +19,12 @@ function RangeButton({ getRange, getDaysBetween }) {
   const pastWeek = new Date(
     moment()
       .startOf("week")
-      .add(1, "d")
       .toISOString()
   );
 
   const [range, setCurrentRange] = useState({
-    startDate: new Date(pastWeek),
-    endDate: new Date(),
+    startDate: pastWeek,
+    endDate: new Date().toUTCString(),
     key: "selection",
     color: "#ff6f00"
   });
@@ -49,6 +48,10 @@ function RangeButton({ getRange, getDaysBetween }) {
     var millisecondsPerDay = 24 * 60 * 60 * 1000;
     return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
   }
+
+  useEffect(() => {
+    getRange && getRange({ ...range });
+  }, []);
 
   return (
     <ButtonMenu

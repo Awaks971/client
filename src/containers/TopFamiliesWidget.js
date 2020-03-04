@@ -17,8 +17,6 @@ function TopFamiliesWidget({
     variables: { range: { start: range.startDate, end: range.endDate } }
   });
   const families = query_data ? query_data.top_families : to_print;
-
-  console.log(current_criterion);
   const data = families
     ? families.map(
         stat => stat[current_criterion ? current_criterion.name : "amount_ttc"]

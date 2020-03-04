@@ -24,18 +24,22 @@ function Dashboard() {
           <RangeButton getRange={range => setCurrentRange(range)} />
         </PageHeader>
       </Grid>
-      <Grid item xs={12}>
-        <CashJournalChart range={currentRange} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <TopFamiliesWidget range={currentRange} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <TopSellersWidget range={currentRange} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={12}>
-        <PaymentsWidget range={currentRange} />
-      </Grid>
+      {currentRange && (
+        <>
+          <Grid item xs={12}>
+            <CashJournalChart range={currentRange} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TopFamiliesWidget range={currentRange} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TopSellersWidget range={currentRange} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PaymentsWidget range={currentRange} />
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 }

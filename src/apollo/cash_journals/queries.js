@@ -6,6 +6,9 @@ export const CA_TTC_BY_COMPANY_BY_DAY = gql`
       group_by_day: true
       amount_ttc_sum: true
       receipt_sum: true
+      basket_median: true
+      canceled_lines_sum: true
+
       order_ASC: true
       range: $range
     ) {

@@ -12,14 +12,7 @@ import PaymentsWidget from "../containers/PaymentsWidget";
 import TableRecap from "../components/TableRecap";
 
 function Statistics() {
-  const today = new Date();
-  const pastMonth = new Date().setDate(today.getDate() - 30);
-  const [currentRange, setCurrentRange] = useState({
-    startDate: new Date(pastMonth),
-    endDate: today,
-    key: "selection",
-    color: "#ff6f00"
-  });
+  const [currentRange, setCurrentRange] = useState(null);
   const [current_criterion, set_current_criterion] = useState({
     name: "amount_ttc",
     label: "Montant TTC"
@@ -50,70 +43,76 @@ function Statistics() {
         </PageHeader>
       </Grid>
 
-      <Grid item xs={12}>
-        <ArticlesChart
-          range={currentRange}
-          current_criterion={current_criterion}
-          get_printable={printable =>
-            set_printable_stats({
-              ...printable_stats,
-              articles_stats: printable
-            })
-          }
-        />
-      </Grid>
-
-      <Grid item xs={12} sm={12} md={6}>
-        <TopFamiliesWidget
-          current_criterion={current_criterion}
-          get_printable={printable =>
-            set_printable_stats({
-              ...printable_stats,
-              top_families: printable
-            })
-          }
-          range={currentRange}
-        />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}>
-        <TopSellersWidget
-          current_criterion={current_criterion}
-          get_printable={printable =>
-            set_printable_stats({
-              ...printable_stats,
-              top_sellers: printable
-            })
-          }
-          range={currentRange}
-        />
-      </Grid>
-      <Grid item xs={12} sm={12} md={12}>
-        <PaymentsWidget
-          current_criterion={current_criterion}
-          get_printable={printable =>
-            set_printable_stats({
-              ...printable_stats,
-              payment_journal: printable
-            })
-          }
-          range={currentRange}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={1}>
+      {!currentRange ? (
+        <div />
+      ) : (
+        <>
           <Grid item xs={12}>
-            <TableRecap recap={current_recap} />
-          </Grid>
-          <Grid item xs={12}>
-            <StatsArticlesTable
-              get_recap={recap => set_current_recap(recap)}
-              current_criterion={current_criterion}
+            <ArticlesChart
               range={currentRange}
               current_criterion={current_criterion}
+              get_printable={printable =>
+                set_printable_stats({
+                  ...printable_stats,
+                  articles_stats: printable
+                })
+              }
             />
           </Grid>
-        </Grid>
-      </Grid>
+
+          <Grid item xs={12} sm={12} md={6}>
+            <TopFamiliesWidget
+              current_criterion={current_criterion}
+              get_printable={printable =>
+                set_printable_stats({
+                  ...printable_stats,
+                  top_families: printable
+                })
+              }
+              range={currentRange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TopSellersWidget
+              current_criterion={current_criterion}
+              get_printable={printable =>
+                set_printable_stats({
+                  ...printable_stats,
+                  top_sellers: printable
+                })
+              }
+              range={currentRange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <PaymentsWidget
+              current_criterion={current_criterion}
+              get_printable={printable =>
+                set_printable_stats({
+                  ...printable_stats,
+                  payment_journal: printable
+                })
+              }
+              range={currentRange}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <TableRecap recap={current_recap} />
+              </Grid>
+              <Grid item xs={12}>
+                <StatsArticlesTable
+                  get_recap={recap => set_current_recap(recap)}
+                  current_criterion={current_criterion}
+                  range={currentRange}
+                  current_criterion={current_criterion}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 }

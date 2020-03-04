@@ -51,8 +51,12 @@ function CashJournalChart({ range }) {
 
   const indicators = [
     {
-      label: "Montant maximum",
-      value: euro.format(Math.max.apply(null, chartData))
+      label: "Montant généré",
+      value: euro.format(
+        cleanJournals.reduce((acc, journal) => {
+          return acc + journal.amount_ttc;
+        }, 0)
+      )
     },
     { label: "Nombre de tickets", value: billCount },
     { label: "Nombre de retours", value: cameBackItems }

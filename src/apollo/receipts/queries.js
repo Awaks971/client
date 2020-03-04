@@ -68,7 +68,7 @@ export const ARTICLES_STATS = gql`
       order_by: $order_by
       range: $range
     ) {
-      id
+      article_id
       label
       profit
       amount_ttc

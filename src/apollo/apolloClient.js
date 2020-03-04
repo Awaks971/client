@@ -7,6 +7,8 @@ import { onError } from "apollo-link-error";
 
 import { resolvers, CURRENT_USER } from "./localManagement";
 
+const { REACT_APP_GRAPHQL_END_POINT } = process.env;
+
 onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
@@ -23,7 +25,7 @@ function createApolloClient() {
    * (In our case, we are using a proxy)
    */
   const httpLink = createHttpLink({
-    uri: `https://360.awaks.fr/graphql`
+    uri: REACT_APP_GRAPHQL_END_POINT
   });
 
   /**
@@ -37,8 +39,6 @@ function createApolloClient() {
   });
 
   const authLink = setContext((request, { headers }) => {
-    console.log(request);
-
     /**
      * Querying the cache to get the user token
      */
