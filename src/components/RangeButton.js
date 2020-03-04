@@ -24,7 +24,7 @@ function RangeButton({ getRange, getDaysBetween }) {
 
   const [range, setCurrentRange] = useState({
     startDate: pastWeek,
-    endDate: new Date().toUTCString(),
+    endDate: new Date(),
     key: "selection",
     color: "#ff6f00"
   });

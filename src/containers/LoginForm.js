@@ -27,9 +27,12 @@ function LoginForm({ history }) {
   async function login({ credentials }) {
     setLoading(true);
     try {
-      const { data: user } = await axios.post(REACT_APP_BACKEND_END_POINT, {
-        credentials
-      });
+      const { data: user } = await axios.post(
+        `${REACT_APP_BACKEND_END_POINT}/login`,
+        {
+          credentials
+        }
+      );
 
       const cleanUser = {
         __typename: "User",
