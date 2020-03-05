@@ -25,7 +25,7 @@ function createApolloClient() {
    * (In our case, we are using a proxy)
    */
   const httpLink = createHttpLink({
-    uri: REACT_APP_GRAPHQL_END_POINT
+    uri: `http://145.239.92.82:8080/graphql`
   });
 
   /**
