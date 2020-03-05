@@ -10,12 +10,7 @@ import TopSellersWidget from "../containers/TopSellersWidget";
 function Dashboard() {
   const today = new Date();
   const pastMonth = new Date().setDate(today.getDate() - 30);
-  const [currentRange, setCurrentRange] = useState({
-    startDate: new Date(pastMonth),
-    endDate: today,
-    key: "selection",
-    color: "#ff6f00"
-  });
+  const [currentRange, setCurrentRange] = useState({});
 
   return (
     <Grid container spacing={3}>
@@ -24,7 +19,7 @@ function Dashboard() {
           <RangeButton getRange={range => setCurrentRange(range)} />
         </PageHeader>
       </Grid>
-      {currentRange && (
+      {currentRange && currentRange.startDate && currentRange.endDate ? (
         <>
           <Grid item xs={12}>
             <CashJournalChart range={currentRange} />
@@ -39,6 +34,8 @@ function Dashboard() {
             <PaymentsWidget range={currentRange} />
           </Grid>
         </>
+      ) : (
+        "Loading ..."
       )}
     </Grid>
   );

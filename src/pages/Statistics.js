@@ -12,11 +12,8 @@ import PaymentsWidget from "../containers/PaymentsWidget";
 import TableRecap from "../components/TableRecap";
 
 function Statistics() {
-  const [currentRange, setCurrentRange] = useState(null);
-  const [current_criterion, set_current_criterion] = useState({
-    name: "amount_ttc",
-    label: "Montant TTC"
-  });
+  const [currentRange, setCurrentRange] = useState({});
+  const [current_criterion, set_current_criterion] = useState({});
 
   const [printable_stats, set_printable_stats] = useState({
     articles_stats: null,
@@ -43,9 +40,11 @@ function Statistics() {
         </PageHeader>
       </Grid>
 
-      {!currentRange ? (
-        <div />
-      ) : (
+      {currentRange &&
+      currentRange.startDate &&
+      currentRange.endDate &&
+      current_criterion &&
+      current_criterion.name ? (
         <>
           <Grid item xs={12}>
             <ArticlesChart
@@ -112,6 +111,8 @@ function Statistics() {
             </Grid>
           </Grid>
         </>
+      ) : (
+        "Loading ..."
       )}
     </Grid>
   );

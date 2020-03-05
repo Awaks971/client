@@ -8,25 +8,22 @@ import useCurrency from "../custom_hooks/useCurrency";
 
 function CashJournalChart({ range }) {
   const { data = {}, loading } = useQuery(CA_TTC_BY_COMPANY_BY_DAY, {
-    variables: range
-      ? {
-          range: {
-            start: range.startDate,
-            end: range.endDate
-          }
-        }
-      : {}
+    variables: {
+      range: {
+        start: range.startDate,
+        end: range.endDate
+      }
+    }
   });
 
-  const cleanJournals =
-    data.cash_journals && data.cash_journals.length > 0
-      ? data.cash_journals.map(journal => {
-          return {
-            ...journal,
-            date: new Date(parseInt(journal.date)).toLocaleDateString()
-          };
-        })
-      : [];
+  const cleanJournals = data.cash_journals
+    ? data.cash_journals.map(journal => {
+        return {
+          ...journal,
+          date: new Date(parseInt(journal.date)).toLocaleDateString()
+        };
+      })
+    : [];
 
   const chartData = cleanJournals
     ? cleanJournals.map(journal => journal.amount_ttc)

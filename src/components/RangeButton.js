@@ -16,15 +16,12 @@ import moment from "moment";
 import { fr } from "react-date-range/dist/locale";
 
 function RangeButton({ getRange, getDaysBetween }) {
-  const pastWeek = new Date(
-    moment()
-      .startOf("week")
-      .toISOString()
-  );
+  const today = new Date();
+  const pastMonth = new Date().setDate(today.getDate() - 30);
 
   const [range, setCurrentRange] = useState({
-    startDate: pastWeek,
-    endDate: new Date(),
+    startDate: new Date(pastMonth),
+    endDate: today,
     key: "selection",
     color: "#ff6f00"
   });
