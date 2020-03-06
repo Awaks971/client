@@ -13,6 +13,10 @@ export const RECEIPTS_BY_CASH_JOURNAL = gql`
     }
     cash_journal(id: $cash_journal_id) {
       date
+      basket_median
+      profit_amount
+      amount_ttc
+      article_count
     }
   }
 `;

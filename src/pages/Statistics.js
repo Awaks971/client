@@ -12,8 +12,8 @@ import PaymentsWidget from "../containers/PaymentsWidget";
 import TableRecap from "../components/TableRecap";
 
 function Statistics() {
-  const [currentRange, setCurrentRange] = useState({});
-  const [current_criterion, set_current_criterion] = useState({});
+  const [currentRange, setCurrentRange] = useState(null);
+  const [current_criterion, set_current_criterion] = useState(null);
 
   const [printable_stats, set_printable_stats] = useState({
     articles_stats: null,
@@ -32,15 +32,15 @@ function Statistics() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <PageHeader title="Satistiques">
+          <ButtonCriteria
+            criterion={criterion => set_current_criterion(criterion)}
+          />
+          <RangeButton getRange={range => setCurrentRange(range)} />
           <StatsPrinterButton
             currentRange={currentRange}
             current_criterion={current_criterion}
             printable={printable_stats}
           />
-          <ButtonCriteria
-            criterion={criterion => set_current_criterion(criterion)}
-          />
-          <RangeButton getRange={range => setCurrentRange(range)} />
         </PageHeader>
       </Grid>
 

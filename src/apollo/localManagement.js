@@ -9,6 +9,7 @@ export const CURRENT_USER = gql`
     auth @client {
       userId
       token
+      firstname
       loggedAs {
         id
         name
@@ -40,6 +41,8 @@ export const DEFAULTS = {
     userId: null,
     token: null,
     role: null,
+    firstname: null,
+    lastname: null,
 
     loggedAs: {
       __typename: "Company",

@@ -25,7 +25,7 @@ function createApolloClient() {
    * (In our case, we are using a proxy)
    */
   const httpLink = createHttpLink({
-    uri: `http://145.239.92.82:8080/graphql`
+    uri: `http://localhost:8080/graphql`
   });
 
   /**

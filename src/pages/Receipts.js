@@ -22,7 +22,11 @@ function Receipts({ match }) {
         />
       </Grid>
       <Grid item xs={12}>
-        <ReceiptsTable receipts={data ? data.receipts : []} loading={loading} />
+        <ReceiptsTable
+          receipts={data ? data.receipts : []}
+          loading={loading}
+          cash_journal={data ? data.cash_journal : []}
+        />
       </Grid>
     </Grid>
   );

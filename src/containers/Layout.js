@@ -21,6 +21,7 @@ import CompaniesButtonMenu from "./CompaniesButtonMenu";
 
 import { useMutation } from "@apollo/react-hooks";
 import { LOCAL_LOGOUT } from "../apollo/user/mutations";
+import { Button } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -91,6 +92,8 @@ function ResponsiveDrawer({ children, container, context, role }) {
   const [auth, setAuth] = React.useState(null);
   const [logout] = useMutation(LOCAL_LOGOUT);
 
+  console.log(auth);
+
   useEffect(() => setAuth(context), [auth, context]);
 
   const handleDrawerToggle = () => {
@@ -155,12 +158,13 @@ function ResponsiveDrawer({ children, container, context, role }) {
               )}
             </Grid>
             <Grid item>
-              <Grid container spacing={1}>
+              <Grid container alignItems="center" spacing={1}>
                 {role !== "admin" && (
                   <Grid item>
-                    <IconButton size="small" color="inherit">
-                      <PersonIcon />
-                    </IconButton>
+                    <Button size="small" color="inherit">
+                      <PersonIcon style={{ marginRight: 5 }} />
+                      {auth && auth.firstname}
+                    </Button>
                   </Grid>
                 )}
                 <Grid item>

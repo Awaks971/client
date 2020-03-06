@@ -13,7 +13,7 @@ import useCurrency from "../custom_hooks/useCurrency";
 import TableRecap from "../components/TableRecap";
 import useNumberFormat from "../custom_hooks/useNumberFormat";
 
-function ReceiptsTable({ loading, receipts }) {
+function ReceiptsTable({ loading, receipts, cash_journal }) {
   const reduce_receipt = field => {
     return receipts.reduce((acc, journal) => {
       return acc + journal[field];
@@ -26,15 +26,19 @@ function ReceiptsTable({ loading, receipts }) {
   const recap = [
     {
       label: "Montant TTC",
-      value: euro.format(reduce_receipt("amount_ttc"))
+      value: euro.format(cash_journal.amount_ttc)
+    },
+    {
+      label: "Panier moyen",
+      value: euro.format(cash_journal.basket_median)
     },
     {
       label: "Marge total",
-      value: euro.format(reduce_receipt("profit"))
+      value: euro.format(cash_journal.profit_amount)
     },
     {
       label: "Quantité total",
-      value: number.format(reduce_receipt("article_count"))
+      value: number.format(cash_journal.article_count)
     }
   ];
 

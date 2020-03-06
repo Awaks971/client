@@ -10,7 +10,7 @@ import TopSellersWidget from "../containers/TopSellersWidget";
 function Dashboard() {
   const today = new Date();
   const pastMonth = new Date().setDate(today.getDate() - 30);
-  const [currentRange, setCurrentRange] = useState({});
+  const [currentRange, setCurrentRange] = useState(null);
 
   return (
     <Grid container spacing={3}>
@@ -19,7 +19,7 @@ function Dashboard() {
           <RangeButton getRange={range => setCurrentRange(range)} />
         </PageHeader>
       </Grid>
-      {currentRange && currentRange.startDate && currentRange.endDate ? (
+      {currentRange ? (
         <>
           <Grid item xs={12}>
             <CashJournalChart range={currentRange} />

@@ -46,17 +46,18 @@ function CashJournalChart({ range }) {
 
   const euro = useCurrency();
 
+  const generated_amount = cleanJournals.reduce((acc, journal) => {
+    return acc + journal.amount_ttc;
+  }, 0);
+
   const indicators = [
     {
       label: "Montant généré",
-      value: euro.format(
-        cleanJournals.reduce((acc, journal) => {
-          return acc + journal.amount_ttc;
-        }, 0)
-      )
+      value: euro.format(generated_amount)
     },
-    { label: "Nombre de tickets", value: billCount },
-    { label: "Nombre de retours", value: cameBackItems }
+    { label: "Panier moyen", value: euro.format(generated_amount / billCount) },
+    { label: "Tickets", value: billCount },
+    { label: "Retours", value: cameBackItems }
   ];
 
   return (
@@ -75,14 +76,15 @@ function CashJournalChart({ range }) {
 function IndicatorFields({ fields = [] }) {
   return (
     <div style={{ margin: 10 }}>
-      <Grid container alignItems="center" spacing={2} justify="center">
+      <Grid container alignItems="center" spacing={1} justify="center">
         {fields.map(field => (
-          <Grid item md={4} sm={6} xs={6} key={field.label}>
+          <Grid item md={3} sm={6} xs={6} key={field.label}>
             <Grid
               container
               alignItems="center"
               justify="center"
               direction="column"
+              spacing={1}
             >
               <Grid item xs={6}>
                 <Typography
@@ -97,7 +99,7 @@ function IndicatorFields({ fields = [] }) {
                 <Typography
                   align="center"
                   color="secondary"
-                  variant="h3"
+                  variant="h4"
                   style={{ fontWeight: 900 }}
                 >
                   {field.value}
