@@ -16,6 +16,7 @@ import PaymentsWidget from "./PaymentsWidget";
 import RootRef from "@material-ui/core/RootRef";
 
 import ReactToPrint from "react-to-print";
+import { useState } from "react";
 
 function StatsPrinterButton({ printable, currentRange, current_criterion }) {
   const ref = useRef();
@@ -24,8 +25,11 @@ function StatsPrinterButton({ printable, currentRange, current_criterion }) {
     loading
   } = useQuery(CURRENT_LOGGED_USER);
 
+  const [dialodIsOpen, setDialog] = useState(false);
+
   return (
     <FullScreenDialogButton
+      isOpen={open => setDialog(open)}
       buttonAction={
         <ReactToPrint
           trigger={() => <Button>Imprimer</Button>}
@@ -46,15 +50,17 @@ function StatsPrinterButton({ printable, currentRange, current_criterion }) {
     >
       {({ onClose }) => {
         return (
-          <RootRef rootRef={ref}>
-            <PrintableStats
-              auth={auth}
-              id="component-to-print"
-              printable={printable}
-              currentRange={currentRange}
-              current_criterion={current_criterion}
-            />
-          </RootRef>
+          dialodIsOpen && (
+            <RootRef rootRef={ref}>
+              <PrintableStats
+                auth={auth}
+                id="component-to-print"
+                printable={printable}
+                currentRange={currentRange}
+                current_criterion={current_criterion}
+              />
+            </RootRef>
+          )
         );
       }}
     </FullScreenDialogButton>

@@ -24,6 +24,10 @@ function Statistics() {
 
   const [current_recap, set_current_recap] = useState([]);
 
+  if (!currentRange && !current_criterion && !current_recap) {
+    return "null";
+  }
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -43,8 +47,7 @@ function Statistics() {
       {currentRange &&
       currentRange.startDate &&
       currentRange.endDate &&
-      current_criterion &&
-      current_criterion.name ? (
+      current_criterion ? (
         <>
           <Grid item xs={12}>
             <ArticlesChart
