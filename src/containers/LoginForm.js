@@ -77,7 +77,6 @@ function LoginForm({ history }) {
         ? history.push("/dashboard")
         : history.push("/finish-register");
     } catch (err) {
-      console.log(err);
       setLoading(false);
       setSuccess(true);
       set_error_message(err.response && err.response.data.message);

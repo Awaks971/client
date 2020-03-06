@@ -92,8 +92,6 @@ function ResponsiveDrawer({ children, container, context, role }) {
   const [auth, setAuth] = React.useState(null);
   const [logout] = useMutation(LOCAL_LOGOUT);
 
-  console.log(auth);
-
   useEffect(() => setAuth(context), [auth, context]);
 
   const handleDrawerToggle = () => {
