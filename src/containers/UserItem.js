@@ -25,6 +25,7 @@ function UserItem({ name, email, id, status, isLoading, company_id }) {
       notifyOnNetworkStatusChange: true
     }
   );
+
   return (
     <ListItem>
       <ListItemAvatar>
