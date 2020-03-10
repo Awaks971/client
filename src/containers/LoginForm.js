@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -7,7 +7,7 @@ import LoadingButton from "../components/LoadingButton";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import { useMutation } from "@apollo/react-hooks";
-import { LOCAL_LOGIN } from "../apollo/user/mutations";
+import { LOCAL_LOGIN, LOCK_ACCOUNT } from "../apollo/user/mutations";
 import { DEFAULTS } from "../apollo/localManagement";
 
 const { REACT_APP_BACKEND_END_POINT } = process.env;
@@ -16,16 +16,17 @@ function LoginForm({ history }) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const [error_message, set_error_message] = React.useState(null);
+  const [error_message, set_error_message] = React.useState({});
 
   const [localLogin] = useMutation(LOCAL_LOGIN);
 
   const handleCloseNotification = () => {
-    set_error_message(null);
+    set_error_message({});
   };
 
   async function login({ credentials }) {
     setLoading(true);
+
     try {
       const { data: user } = await axios.post(
         `${REACT_APP_BACKEND_END_POINT}/login`,
@@ -77,9 +78,11 @@ function LoginForm({ history }) {
         ? history.push("/dashboard")
         : history.push("/finish-register");
     } catch (err) {
+      set_error_message({
+        login_attempts: err.response && err.response.data.message
+      });
       setLoading(false);
       setSuccess(true);
-      set_error_message(err.response && err.response.data.message);
     }
   }
 
@@ -153,14 +156,14 @@ function LoginForm({ history }) {
       </Grid>
 
       <Snackbar
-        open={Boolean(error_message)}
+        open={Boolean(error_message.login_attempts)}
         onClose={handleCloseNotification}
         autoHideDuration={3000}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right"
         }}
-        message={error_message}
+        message={error_message.login_attempts}
       />
     </>
   );

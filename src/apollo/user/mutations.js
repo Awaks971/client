@@ -32,6 +32,13 @@ export const LOCAL_LOGIN = gql`
     login(input: $input) @client
   }
 `;
+export const LOCK_ACCOUNT = gql`
+  mutation LockAccount($user: LockAccount!) {
+    lock_account(user: $user) {
+      id
+    }
+  }
+`;
 
 export const DISABLE_USER = gql`
   mutation DisableUser($userId: ID!, $status: String!) {
