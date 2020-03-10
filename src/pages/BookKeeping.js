@@ -2,14 +2,21 @@ import React from "react";
 import PageHeader from "../components/PageHeader";
 import { Grid } from "@material-ui/core";
 import ItemCard from "../containers/ItemCard";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
+import SubjectIcon from "@material-ui/icons/Subject";
+import EventIcon from "@material-ui/icons/Event";
 
 const settings_type = [
   {
-    label: "Profile",
-    path: "/settings/profil",
-    icon: <PersonPinIcon fontSize="large" color="secondary" />,
-    description: "description"
+    label: "Familles",
+    path: "/book-keeping/family",
+    icon: <SubjectIcon fontSize="large" color="secondary" />,
+    description: "Retrouvez vos statistiques par famille"
+  },
+  {
+    label: "Mois",
+    path: "/book-keeping/month",
+    icon: <EventIcon fontSize="large" color="secondary" />,
+    description: "Retrouvez vos statistiques par mois"
   }
 ];
 
@@ -17,7 +24,7 @@ function Settings() {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
-        <PageHeader title="Paramètres" />
+        <PageHeader title="Comptabilité" />
       </Grid>
       {settings_type.map(({ label, path, icon, description }) => {
         return (

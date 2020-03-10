@@ -19,7 +19,7 @@ const Subtitle = styled.span`
 function PageHeader({ title, subtitle, children, small = false }) {
   return (
     <Grid container alignItems="center" justify="space-between">
-      <Grid item xs={small ? null : 6}>
+      <Grid item xs={small ? null : 12} sm={small ? null : 6}>
         <Title small={small}>{title}</Title>
         <Subtitle small={small}>{subtitle}</Subtitle>
       </Grid>

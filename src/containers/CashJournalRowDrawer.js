@@ -19,13 +19,16 @@ import { useHistory } from "react-router-dom";
 function CashJournalRowDrawer({ cash_journal, onClose }) {
   const history = useHistory();
   const euro = useCurrency();
+  if (!cash_journal || cash_journal.length <= 0) {
+    return "Loading ...";
+  }
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <PageHeader
           small
           title="Journal de caisse"
-          subtitle={new Date(parseInt(cash_journal.date)).toLocaleDateString()}
+          subtitle={moment(parseInt(cash_journal.date)).format("LL")}
         >
           <IconButton onClick={() => onClose()}>
             <CloseIcon />

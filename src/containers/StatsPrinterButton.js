@@ -15,7 +15,6 @@ import TopSellersWidget from "./TopSellersWidget";
 import PaymentsWidget from "./PaymentsWidget";
 import RootRef from "@material-ui/core/RootRef";
 
-import ReactToPrint from "react-to-print";
 import { useState } from "react";
 
 function StatsPrinterButton({ printable, currentRange, current_criterion }) {
@@ -30,12 +29,6 @@ function StatsPrinterButton({ printable, currentRange, current_criterion }) {
   return (
     <FullScreenDialogButton
       isOpen={open => setDialog(open)}
-      buttonAction={
-        <ReactToPrint
-          trigger={() => <Button>Imprimer</Button>}
-          content={() => ref.current}
-        />
-      }
       buttonComponent={({ onClick }) => (
         <Button
           size="small"

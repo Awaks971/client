@@ -80,6 +80,17 @@ function LoginForm({ history }) {
       setLoading(false);
       setSuccess(true);
       set_error_message(err.response && err.response.data.message);
+
+      if (err.response && err.response.data.error_code === "BAD_PASSWORD") {
+        const login_attempts = parseInt(
+          sessionStorage.getItem("login_attempts")
+        );
+        if (!login_attempts) {
+          sessionStorage.setItem("login_attempts", "1");
+        } else {
+          sessionStorage.setItem("login_attempts", `${login_attempts - 1}`);
+        }
+      }
     }
   }
 

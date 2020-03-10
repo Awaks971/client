@@ -95,6 +95,26 @@ export const TOP_5_FAMILIES = gql`
   }
 `;
 
+export const BOOK_KEEPING_FAMILIES = gql`
+  query TopFamilies($range: RangeInputType) {
+    top_families(range: $range) {
+      label
+      id
+      amount_ttc
+      article_count
+      amount_ht
+      profit
+      amount_vat
+      vat_rate
+    }
+    top_payment_mode(range: $range) {
+      label
+      amount
+      count
+    }
+  }
+`;
+
 export const TOP_5_SELLERS = gql`
   query TopSellers($range: RangeInputType) {
     top_sellers(range: $range, limit: 5) {
