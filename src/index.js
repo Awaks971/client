@@ -6,15 +6,22 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
 import { BrowserRouter as Router } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
+import can_launch from "./browserVerification";
+import OldBrowserAlert from "./components/OldBrowserAlert";
 
-const app = (
-  <ThemeProvider theme={theme}>
-    <Router>
-      <GlobalStyle />
-      <App />
-    </Router>
-  </ThemeProvider>
-);
+let app;
+if (can_launch()) {
+  app = (
+    <ThemeProvider theme={theme}>
+      <Router>
+        <GlobalStyle />
+        <App />
+      </Router>
+    </ThemeProvider>
+  );
+} else {
+  app = <OldBrowserAlert />;
+}
 
 ReactDOM.render(app, document.getElementById("root"));
 
