@@ -29,12 +29,6 @@ function StatsPrinterButton({ printable, currentRange, current_criterion }) {
   return (
     <FullScreenDialogButton
       isOpen={open => setDialog(open)}
-      buttonAction={
-        <ReactToPrint
-          trigger={() => <Button>Imprimer</Button>}
-          content={() => ref.current}
-        />
-      }
       buttonComponent={({ onClick }) => (
         <Button
           size="small"
