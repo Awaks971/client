@@ -26,11 +26,13 @@ function PageHeader({ title, subtitle, children, small = false }) {
       <Grid item>
         <Grid container alignItems="center" spacing={1}>
           {children && children.length ? (
-            children.map((child, i) => (
-              <Grid item key={child.key + "-" + i}>
-                {child}
-              </Grid>
-            ))
+            children.map((child, i) => {
+              return (
+                <Grid item key={"page-header-child-" + i}>
+                  {child}
+                </Grid>
+              );
+            })
           ) : (
             <Grid item>{children}</Grid>
           )}

@@ -27,8 +27,6 @@ function UserProfil() {
   const { data: company_data, loading: company_loading } = useQuery(
     CURRENT_LOGGED_USER
   );
-
-  console.log(company_data);
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>

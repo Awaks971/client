@@ -45,7 +45,7 @@ function BookKeepingFamily() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <PageHeader title="Tableau de bord">
+        <PageHeader title="Comptabilité par famille">
           <RangeButton getRange={range => setCurrentRange(range)} />
           <Button
             color="primary"

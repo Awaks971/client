@@ -125,3 +125,33 @@ export const TOP_5_SELLERS = gql`
     }
   }
 `;
+export const TOP_MONTHS = gql`
+  query TopMonth($range: Int) {
+    top_month(range: $range) {
+      month
+      year
+      amount_ht
+      amount_ttc
+
+      payments {
+        paid_amount
+        payment_label
+      }
+    }
+  }
+`;
+export const TOTAL_PAYMENT_BY_YEAR = gql`
+  query TotalPaymentByYear($range: Int) {
+    total_payment_by_year(range: $range) {
+      paid_amount
+      payment_label
+    }
+  }
+`;
+export const GET_YEARS_ON_RECEIPT = gql`
+  query {
+    get_years_on_receipt {
+      year
+    }
+  }
+`;
