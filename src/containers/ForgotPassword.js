@@ -130,35 +130,7 @@ function LoginForm({ history }) {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Grid
-                  container
-                  spacing={4}
-                  justify="flex-end"
-                  alignItems="center"
-                >
-                  <Grid item>
-                    <LoadingButton
-                      onClick={async () => {
-                        await login({ credentials });
-                      }}
-                      success={success}
-                      loading={loading}
-                      color="primary"
-                      variant="outlined"
-                    >
-                      Se connecter
-                    </LoadingButton>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <Divider style={{ marginBottom: 5 }} />
-              </Grid>
             </Grid>
-            <Typography align="center" component={Link} to="forgot-password">
-              Mot de passe oublié ?
-            </Typography>
           </Paper>
         </Grid>
       </Grid>

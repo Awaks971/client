@@ -24,6 +24,7 @@ function App() {
     <ApolloProvider client={client}>
       <Switch>
         <Route path="/login" component={LoginForm} />
+        <Route path="/forgot-password" component={LoginForm} />
         <PrivateRoute />
       </Switch>
     </ApolloProvider>
