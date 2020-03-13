@@ -7,7 +7,6 @@ import CashJournalRoutes from "./CashJournalRoutes";
 import SettingsRoutes from "./SettingsRoutes";
 import FinishRegister from "../../pages/FinishRegister";
 import { motion } from "framer-motion";
-import BookKeepingRoutes from "./BookKeepingRoutes";
 
 function ClientRoutes() {
   const routes = [
@@ -15,7 +14,6 @@ function ClientRoutes() {
     { path: "/cash-journals", component: CashJournalRoutes },
     { path: "/statistics", component: Statistics },
     { path: "/settings", component: SettingsRoutes },
-    { path: "/book-keeping", component: BookKeepingRoutes },
     { path: "/finish-register", component: FinishRegister }
   ];
 

@@ -14,10 +14,7 @@ function TopFamiliesWidget({
   const { data: query_data, loading } = useQuery(TOP_5_FAMILIES, {
     skip: !!to_print,
 
-    variables: {
-      range: { start: range.startDate, end: range.endDate },
-      limit: 5
-    }
+    variables: { range: { start: range.startDate, end: range.endDate } }
   });
   const families = query_data ? query_data.top_families : to_print;
   const data = families

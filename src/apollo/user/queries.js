@@ -18,7 +18,6 @@ export const CURRENT_LOGGED_USER = gql`
       userCompanies {
         id
         name
-        siret
       }
     }
   }

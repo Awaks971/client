@@ -19,20 +19,18 @@ const Subtitle = styled.span`
 function PageHeader({ title, subtitle, children, small = false }) {
   return (
     <Grid container alignItems="center" justify="space-between">
-      <Grid item xs={small ? null : 12} sm={small ? null : 6}>
+      <Grid item xs={small ? null : 6}>
         <Title small={small}>{title}</Title>
         <Subtitle small={small}>{subtitle}</Subtitle>
       </Grid>
       <Grid item>
         <Grid container alignItems="center" spacing={1}>
           {children && children.length ? (
-            children.map((child, i) => {
-              return (
-                <Grid item key={"page-header-child-" + i}>
-                  {child}
-                </Grid>
-              );
-            })
+            children.map((child, i) => (
+              <Grid item key={child.key + "-" + i}>
+                {child}
+              </Grid>
+            ))
           ) : (
             <Grid item>{children}</Grid>
           )}

@@ -16,7 +16,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CompaniesButtonMenu from "./CompaniesButtonMenu";
 
 import { useMutation } from "@apollo/react-hooks";
@@ -30,13 +30,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   drawer: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0
     }
   },
   appBar: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth
     },
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       display: "none"
     }
   },
@@ -77,7 +77,6 @@ const roles = {
     { label: "Tableau de bord", path: "/dashboard" },
     { label: "Journal de caisses", path: "/cash-journals" },
     { label: "Statistiques", path: "/statistics" },
-    { label: "Comptabilité", path: "/book-keeping" },
     { label: "Paramètres", path: "/settings" }
   ],
   admin: [
@@ -89,7 +88,6 @@ const roles = {
 function ResponsiveDrawer({ children, container, context, role }) {
   const classes = useStyles();
   const theme = useTheme();
-  const history = useHistory();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(null);
   const [logout] = useMutation(LOCAL_LOGOUT);
@@ -99,8 +97,6 @@ function ResponsiveDrawer({ children, container, context, role }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  history.listen(() => setMobileOpen(false));
   const drawer = (
     <div>
       <div
@@ -143,7 +139,6 @@ function ResponsiveDrawer({ children, container, context, role }) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
-            size="small"
             color="inherit"
             aria-label="open drawer"
             edge="start"
@@ -163,19 +158,12 @@ function ResponsiveDrawer({ children, container, context, role }) {
             <Grid item>
               <Grid container alignItems="center" spacing={1}>
                 {role !== "admin" && (
-                  <Hidden smDown>
-                    <Grid item>
-                      <Button
-                        component={Link}
-                        to="/settings/profil"
-                        size="small"
-                        color="inherit"
-                      >
-                        <PersonIcon style={{ marginRight: 5 }} />
-                        {auth && auth.firstname}
-                      </Button>
-                    </Grid>
-                  </Hidden>
+                  <Grid item>
+                    <Button size="small" color="inherit">
+                      <PersonIcon style={{ marginRight: 5 }} />
+                      {auth && auth.firstname}
+                    </Button>
+                  </Grid>
                 )}
                 <Grid item>
                   <IconButton
@@ -210,7 +198,7 @@ function ResponsiveDrawer({ children, container, context, role }) {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden smDown implementation="css">
+        <Hidden xsDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper

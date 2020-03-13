@@ -19,13 +19,13 @@ onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-function createApolloClient(env) {
+function createApolloClient() {
   /**
    * Link Apollo client with the remote GraphQL server
    * (In our case, we are using a proxy)
    */
   const httpLink = createHttpLink({
-    uri: `${env}/graphql`
+    uri: `http://localhost:8080/graphql`
   });
 
   /**

@@ -29,9 +29,8 @@ function FormBuilder({
           >
             <Grid container spacing={1} alignItems="center">
               {fields.map(field => (
-                <Grid item md={field.grid || 12} key={field.name} xs={12}>
+                <Grid item xs={field.grid || 12} key={field.name}>
                   <Field
-                    disabled={field.disabled}
                     required={field.required}
                     name={field.name}
                     type={field.type}
@@ -40,7 +39,6 @@ function FormBuilder({
                         <TextField
                           {...input}
                           fullWidth
-                          disabled={field.disabled}
                           required={field.required}
                           type={field.type}
                           margin={margin}

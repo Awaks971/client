@@ -5,8 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const CustomPaper = styled(
-  ({ paperRef, spaced, bodyLoading, titleLoading, outlined, ...rest }) => (
-    <MUIPaper ref={paperRef} outlined={outlined} {...rest} />
+  ({ paperRef, spaced, bodyLoading, titleLoading, ...rest }) => (
+    <MUIPaper ref={paperRef} {...rest} />
   )
 )`
   && {
@@ -24,7 +24,7 @@ const PaperTitleWrapper = styled.div`
 `;
 const PaperTitle = styled.h2`
   color: #076570;
-  font-size: 16px;
+  font-size: 17px;
   width: 70%;
 
   margin: 0;
@@ -48,7 +48,7 @@ function Paper({
   ...rest
 }) {
   return (
-    <CustomPaper outlined={rest.outlined} paperRef={paperRef} {...rest}>
+    <CustomPaper paperRef={paperRef} {...rest}>
       {title && (
         <PaperTitleWrapper>
           <PaperTitle>{title}</PaperTitle>
