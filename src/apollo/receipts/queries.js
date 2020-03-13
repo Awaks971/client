@@ -95,6 +95,26 @@ export const TOP_5_FAMILIES = gql`
   }
 `;
 
+export const BOOK_KEEPING_FAMILIES = gql`
+  query TopFamilies($range: RangeInputType) {
+    top_families(range: $range) {
+      label
+      id
+      amount_ttc
+      article_count
+      amount_ht
+      profit
+      amount_vat
+      vat_rate
+    }
+    top_payment_mode(range: $range) {
+      label
+      amount
+      count
+    }
+  }
+`;
+
 export const TOP_5_SELLERS = gql`
   query TopSellers($range: RangeInputType) {
     top_sellers(range: $range, limit: 5) {
@@ -102,6 +122,36 @@ export const TOP_5_SELLERS = gql`
       id
       amount_ttc
       article_count
+    }
+  }
+`;
+export const TOP_MONTHS = gql`
+  query TopMonth($range: Int) {
+    top_month(range: $range) {
+      month
+      year
+      amount_ht
+      amount_ttc
+
+      payments {
+        paid_amount
+        payment_label
+      }
+    }
+  }
+`;
+export const TOTAL_PAYMENT_BY_YEAR = gql`
+  query TotalPaymentByYear($range: Int) {
+    total_payment_by_year(range: $range) {
+      paid_amount
+      payment_label
+    }
+  }
+`;
+export const GET_YEARS_ON_RECEIPT = gql`
+  query {
+    get_years_on_receipt {
+      year
     }
   }
 `;

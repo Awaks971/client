@@ -86,7 +86,7 @@ function IndicatorFields({ fields = [] }) {
               direction="column"
               spacing={1}
             >
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography
                   align="center"
                   color="secondary"
@@ -95,7 +95,7 @@ function IndicatorFields({ fields = [] }) {
                   {field.label}
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography
                   align="center"
                   color="secondary"

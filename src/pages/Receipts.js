@@ -4,6 +4,7 @@ import PageHeader from "../components/PageHeader";
 import ReceiptsTable from "../containers/ReceiptTable";
 import { RECEIPTS_BY_CASH_JOURNAL } from "../apollo/receipts/queries";
 import { useQuery } from "@apollo/react-hooks";
+import moment from "moment";
 
 function Receipts({ match }) {
   const cash_journal_id = match.params.id;
@@ -11,14 +12,17 @@ function Receipts({ match }) {
   const { data, loading } = useQuery(RECEIPTS_BY_CASH_JOURNAL, {
     variables: { cash_journal_id }
   });
+  if (!data || !data.cash_journal || data.cash_journal.length <= 0) {
+    return "Loading ...";
+  }
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <PageHeader
           title="Tickets"
-          subtitle={`JDC du ${new Date(
-            parseInt(data ? data.cash_journal.date : "000000000")
-          ).toLocaleDateString()}`}
+          subtitle={`JDC du ${moment(parseInt(data.cash_journal.date)).format(
+            "LL"
+          )}`}
         />
       </Grid>
       <Grid item xs={12}>
