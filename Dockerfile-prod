@@ -32,7 +32,7 @@ RUN yarn build
  # -------------------
 
 
-FROM nginx:1.16-alpine
+FROM nginx:latest
 
 RUN apk add --no-cache certbot
 
