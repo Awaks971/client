@@ -3,17 +3,13 @@
 # -------------------
 
 # Use the lightest version of NodeJS
-FROM node:12.4 AS build
+FROM node:latest AS build
 
 # Specify working directory
 WORKDIR /usr/src/app/awaks-dashboard
 
 # Copy only the package.json
 COPY package*.json /usr/src/app/awaks-dashboard/
-
-# Set ENV
-ENV NODE_PATH=/node_modules
-ENV PATH=$PATH:/node_modules/.bin
 
 # Install dependencies
 RUN yarn
@@ -32,7 +28,7 @@ RUN yarn build
  # -------------------
 
 
-FROM nginx:1.16-alpine
+FROM nginx:latest
 
 #RUN apk add --no-cache certbot
 
