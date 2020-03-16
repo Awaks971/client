@@ -29,7 +29,9 @@ function CashJournalTable() {
     setPage(0);
   };
 
-  const { data, loading } = useQuery(CASH_JOURNALS);
+  const { data, loading } = useQuery(CASH_JOURNALS, {
+    fetchPolicy: "network-only"
+  });
 
   const cash_journals = data ? data.cash_journals : [];
 
