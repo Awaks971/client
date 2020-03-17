@@ -3,7 +3,7 @@
 # -------------------
 
 # Use the lightest version of NodeJS
-FROM node:latest AS build
+FROM node:alpine AS build
 
 # Specify working directory
 WORKDIR /usr/src/app/awaks-dashboard
