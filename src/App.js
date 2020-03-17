@@ -6,11 +6,13 @@ import LoginForm from "./containers/LoginForm";
 import PrivateRoute from "./containers/PrivateRoute";
 import createApolloClient from "./apollo/apolloClient";
 
+const { REACT_APP_BACKEND_END_POINT } = process.env;
+
 function App() {
   const [client, setClient] = useState(undefined);
 
   useEffect(() => {
-    setClient(createApolloClient());
+    setClient(createApolloClient(REACT_APP_BACKEND_END_POINT));
     return () => {};
   }, []);
 
