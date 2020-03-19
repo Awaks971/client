@@ -19,3 +19,5 @@ COPY . /usr/src/app/awaks-dashboard
 
 # Build the application
 RUN yarn build
+
+
