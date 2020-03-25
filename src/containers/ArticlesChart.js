@@ -4,12 +4,18 @@ import { useQuery } from "@apollo/react-hooks";
 import BarChart from "../components/BarChart";
 import { ARTICLES_STATS } from "../apollo/receipts/queries";
 
-function ArticlesChart({ range, current_criterion, get_printable, to_print }) {
+function ArticlesChart({
+  range,
+  current_criterion,
+  get_printable,
+  to_print,
+  limit
+}) {
   const { data: query_data = {}, loading } = useQuery(ARTICLES_STATS, {
     skip: !!to_print,
 
     variables: {
-      limit: 20,
+      limit: limit || 20,
       order_by: current_criterion.name,
       range: {
         start: range.startDate,

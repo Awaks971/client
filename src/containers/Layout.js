@@ -22,6 +22,7 @@ import CompaniesButtonMenu from "./CompaniesButtonMenu";
 import { useMutation } from "@apollo/react-hooks";
 import { LOCAL_LOGOUT } from "../apollo/user/mutations";
 import { Button } from "@material-ui/core";
+import packagejson from "../../package.json";
 
 const drawerWidth = 240;
 
@@ -51,7 +52,9 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
 
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    position: "relative",
+    height: "100vh"
   },
   content: {
     flexGrow: 1,
@@ -105,12 +108,26 @@ function ResponsiveDrawer({ children, container, context, role }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#ff6f00",
           fontWeight: 900
         }}
       >
-        <Typography variant="h6" noWrap>
+        <Typography color="primary" variant="h6" noWrap>
           AWAKS 360
+        </Typography>
+        <Typography
+          style={{
+            position: "absolute",
+            bottom: 0,
+            borderTop: "1px solid #0000001f",
+            width: "100%"
+          }}
+          color="inherit"
+          align="center"
+          paragraph
+          variant="caption"
+          noWrap
+        >
+          version: {packagejson.version}
         </Typography>
       </div>
       <Divider />

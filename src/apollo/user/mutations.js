@@ -55,3 +55,21 @@ export const FINISH_REGISTER = gql`
     }
   }
 `;
+export const UPDATE_PASSWORD = gql`
+  mutation UpdatePassword($new_password: String!) {
+    update_password(new_password: $new_password) {
+      id
+    }
+  }
+`;
+export const UPDATE_PERSONAL_INFORMATIONS = gql`
+  mutation UpdatePersonnalInformation(
+    $personal_informations: PersonalInformationsInputType!
+  ) {
+    update_personal_informations(
+      personal_informations: $personal_informations
+    ) {
+      id
+    }
+  }
+`;
