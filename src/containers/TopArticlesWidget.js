@@ -61,7 +61,6 @@ function SelectCriteria({ current_criterion }) {
 
   return (
     <FormControl>
-      {/* <InputLabel id="criteria-select-label">Critère</InputLabel> */}
       <Select
         labelId="criteria-select-label"
         id="criteria-select"
