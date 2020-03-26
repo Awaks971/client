@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Paper from "../components/Paper";
 import BarChart from "../components/BarChart";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";

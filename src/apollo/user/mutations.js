@@ -73,3 +73,10 @@ export const UPDATE_PERSONAL_INFORMATIONS = gql`
     }
   }
 `;
+export const UPDATE_STORE = gql`
+  mutation UpdateStore($store: StoreInputType!) {
+    update_store(store: $store) {
+      name
+    }
+  }
+`;

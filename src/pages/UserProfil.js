@@ -8,7 +8,10 @@ import {
   PERSONNAL_INFORMATIONS,
   CURRENT_LOGGED_USER
 } from "../apollo/user/queries";
-import { UPDATE_PERSONAL_INFORMATIONS } from "../apollo/user/mutations";
+import {
+  UPDATE_PERSONAL_INFORMATIONS,
+  UPDATE_STORE
+} from "../apollo/user/mutations";
 import ChangePassword from "../containers/ChangePassword";
 import _ from "lodash";
 
@@ -31,9 +34,11 @@ function UserProfil() {
   const [update_personnal_informations] = useMutation(
     UPDATE_PERSONAL_INFORMATIONS
   );
+
   const { data: company_data, loading: company_loading } = useQuery(
     CURRENT_LOGGED_USER
   );
+  const [update_store] = useMutation(UPDATE_STORE);
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
@@ -75,7 +80,12 @@ function UserProfil() {
             initialValues={company_data && company_data.auth.loggedAs}
             resetAfterSubmit={false}
             onSubmit={company => {
-              console.log(company);
+              const clean_payload = _.omit(company, [
+                "siret",
+                "__typename",
+                "address.__typename"
+              ]);
+              update_store({ variables: { store: clean_payload } });
             }}
             fields={company_fields}
           />
