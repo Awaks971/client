@@ -6,6 +6,7 @@ import RangeButton from "../components/RangeButton";
 import PaymentsWidget from "../containers/PaymentsWidget";
 import TopFamiliesWidget from "../containers/TopFamiliesWidget";
 import TopSellersWidget from "../containers/TopSellersWidget";
+import TopArticlesWidget from "../containers/TopArticlesWidget";
 
 function Dashboard() {
   const today = new Date();
@@ -29,6 +30,9 @@ function Dashboard() {
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <TopSellersWidget range={currentRange} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <TopArticlesWidget range={currentRange} />
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
             <PaymentsWidget range={currentRange} />
