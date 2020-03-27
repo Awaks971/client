@@ -9,6 +9,12 @@ import axios from "axios";
 import { useMutation } from "@apollo/react-hooks";
 import { LOCAL_LOGIN } from "../apollo/user/mutations";
 import { DEFAULTS } from "../apollo/localManagement";
+import { Divider, IconButton } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import ResetPasswordDialog from "./ResetPasswordDialog";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 const { REACT_APP_BACKEND_END_POINT } = process.env;
 
@@ -16,6 +22,7 @@ function LoginForm({ history }) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const [error_message, set_error_message] = React.useState(null);
 
   const [localLogin] = useMutation(LOCAL_LOGIN);
@@ -93,7 +100,7 @@ function LoginForm({ history }) {
       >
         <Grid item md={4} sm={6} xs={12}>
           <Paper style={{ padding: 24 }}>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography variant="h4" style={{ fontWeight: 500 }}>
                   Connexion
@@ -116,11 +123,24 @@ function LoginForm({ history }) {
                 <TextField
                   color="primary"
                   fullWidth
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={credentials.password}
                   onChange={e =>
                     setCredentials({ ...credentials, password: e.target.value })
                   }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                          edge="end"
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                   label="Mot de passe"
                   variant="outlined"
                 />
@@ -146,6 +166,12 @@ function LoginForm({ history }) {
                     </LoadingButton>
                   </Grid>
                 </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <ResetPasswordDialog />
               </Grid>
             </Grid>
           </Paper>

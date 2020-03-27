@@ -8,7 +8,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
-import { DialogContent } from "@material-ui/core";
+import {
+  DialogContent,
+  DialogTitle,
+  DialogContentText
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -28,7 +32,8 @@ export default function ButtonDialog({
   children,
   buttonTitle,
   buttonComponent,
-  onSubmit,
+  dialogTitle,
+  dialogText,
   isOpen = x => x
 }) {
   const classes = useStyles();
@@ -65,7 +70,9 @@ export default function ButtonDialog({
         onClose={handleClose}
         TransitionComponent={Transition}
       >
+        <DialogTitle>{dialogTitle}</DialogTitle>
         <DialogContent>
+          <DialogContentText>{dialogText}</DialogContentText>
           {typeof children === "function"
             ? children({ onClose: () => handleClose() })
             : children}
