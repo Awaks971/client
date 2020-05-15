@@ -30,7 +30,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LoadingButton({ loading, success, children, type, ...rest }) {
+function LoadingButton({
+  loading,
+  success,
+  children,
+  type,
+  disabled,
+  ...rest
+}) {
   const classes = useStyles();
 
   const styles = {
@@ -45,7 +52,7 @@ function LoadingButton({ loading, success, children, type, ...rest }) {
         color="primary"
         type={type}
         className={styles[loading || success]}
-        disabled={loading}
+        disabled={disabled || loading}
         {...(rest.onClick ? { onClick: e => rest.onClick(e) } : {})}
       >
         {children}
