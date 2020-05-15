@@ -14,12 +14,15 @@ function FormBuilder({
   formValidations,
   loading
 }) {
+  function default_field_validation(field) {
+    return !field ? "Champs requis" : "";
+  }
   return (
     <Form
       validate={formValidations}
       initialValues={initialValues}
       onSubmit={onSubmit}
-      render={({ handleSubmit, form }) => {
+      render={({ handleSubmit, form, invalid }) => {
         return (
           <form
             onSubmit={async e => {
@@ -31,6 +34,7 @@ function FormBuilder({
               {fields.map(field => (
                 <Grid item xs={field.grid || 12} key={field.name}>
                   <Field
+                    validate={field.validate || default_field_validation}
                     required={field.required}
                     name={field.name}
                     type={field.type}
@@ -59,6 +63,7 @@ function FormBuilder({
                       <LoadingButton
                         loading={loading}
                         type="submit"
+                        disabled={invalid}
                         size={margin === "dense" ? "small" : "medium"}
                         variant="contained"
                         color="secondary"

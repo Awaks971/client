@@ -16,7 +16,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import CompaniesButtonMenu from "./CompaniesButtonMenu";
 
 import { useMutation } from "@apollo/react-hooks";
@@ -176,7 +176,12 @@ function ResponsiveDrawer({ children, container, context, role }) {
               <Grid container alignItems="center" spacing={1}>
                 {role !== "admin" && (
                   <Grid item>
-                    <Button size="small" color="inherit">
+                    <Button
+                      component={Link}
+                      to="/settings/profil"
+                      size="small"
+                      color="inherit"
+                    >
                       <PersonIcon style={{ marginRight: 5 }} />
                       {auth && auth.firstname}
                     </Button>

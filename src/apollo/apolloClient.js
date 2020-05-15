@@ -7,8 +7,6 @@ import { onError } from "apollo-link-error";
 
 import { resolvers, CURRENT_USER } from "./localManagement";
 
-const { REACT_APP_GRAPHQL_END_POINT } = process.env;
-
 onError(({ graphQLErrors, networkError, ...rest }) => {
   console.log(rest);
   if (graphQLErrors)

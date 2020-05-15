@@ -62,6 +62,14 @@ export const UPDATE_PASSWORD = gql`
     }
   }
 `;
+export const RESET_PASSWORD = gql`
+  mutation ResetPassword($token: String!) {
+    reset_password(token: $token) {
+      token_id
+      message
+    }
+  }
+`;
 export const UPDATE_PERSONAL_INFORMATIONS = gql`
   mutation UpdatePersonnalInformation(
     $personal_informations: PersonalInformationsInputType!

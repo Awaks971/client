@@ -17,16 +17,21 @@ import _ from "lodash";
 
 function UserProfil() {
   const user_profil_fields = [
-    { label: "Email", name: "email", grid: 4 },
-    { label: "Prénom", name: "firstname", grid: 4 },
-    { label: "Nom", name: "lastname", grid: 4 }
+    { label: "Email", name: "email", required: true, grid: 4 },
+    { label: "Prénom", name: "firstname", required: true, grid: 4 },
+    { label: "Nom", name: "lastname", required: true, grid: 4 }
   ];
   const company_fields = [
-    { label: "Magasin", name: "name", grid: 4 },
-    { label: "Téléphone", name: "phone", grid: 4 },
-    { label: "Adresse", name: "address.line1", grid: 4 },
-    { label: "Code postal", name: "address.postal_code", grid: 4 },
-    { label: "Ville", name: "address.city", grid: 4 }
+    { label: "Magasin", name: "name", required: true, grid: 4 },
+    { label: "Téléphone", name: "phone", required: true, grid: 4 },
+    { label: "Adresse", name: "address.line1", required: true, grid: 4 },
+    {
+      label: "Code postal",
+      name: "address.postal_code",
+      required: true,
+      grid: 4
+    },
+    { label: "Ville", name: "address.city", required: true, grid: 4 }
   ];
   const { data: user_data, loading: user_loading } = useQuery(
     PERSONNAL_INFORMATIONS
