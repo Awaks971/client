@@ -26,7 +26,7 @@
     "framer-motion": "^1.8.4",
     "graphql": "^14.5.8",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "query-string": "^6.11.1",
     "react": "^16.12.0",
