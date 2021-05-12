@@ -20,7 +20,7 @@
     "apollo-link-http": "^1.5.16",
     "apollo-link-state": "^0.4.2",
     "axios": "^0.19.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "date-fns": "^2.10.0",
     "final-form": "^4.18.7",
     "framer-motion": "^1.8.4",
