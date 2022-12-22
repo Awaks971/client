@@ -25,7 +25,7 @@
     "final-form": "^4.18.7",
     "framer-motion": "^1.8.4",
     "graphql": "^14.5.8",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "query-string": "^6.11.1",
